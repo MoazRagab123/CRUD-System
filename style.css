@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+    input {
+      @apply w-full h-[40px] my-2 p-2 bg-[#111] text-white border-none outline-none rounded-md placeholder-gray-500 focus:bg-[#000] focus:scale-110 duration-300;
+    }
+  }

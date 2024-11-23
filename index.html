@@ -4,11 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD System</title>
+    <link rel="stylesheet" href="style.css"> 
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
     <script src="tailwind.config.js"></script>
 
 </head>
-<body>
- 
+<body class="m-0 p-0 bg-[#222] text-white ">
+  <div class="crud w-[80%] m-auto">
+    <div class="head text-center uppercase ">
+        <h2 class="font-bold text-3xl">crud</h2>
+        <p class="text-xl">PROUDCT MANAGEMENT SYSTEM</p>
+    </div>
+   <!-- inputs section -->
+    <div class="inputs w-full">
+       <input class="focus:scale-110 duration-300 focus:bg-[#000] w-full h-[30px] outline-none border-none bg-[#111] my-2 rounded-md p-2" type="text" id="title" placeholder="title">
+         <div class="gap-3 justify-between sm:flex items-center ">
+            <input onkeyup="getTotal()" class=" focus:scale-110 duration-300 focus:bg-[#000] w-full h-[30px] outline-none border-none bg-[#111] my-2 rounded-md p-2" type="number" id="price" placeholder="price">
+            <input onkeyup="getTotal()" class=" focus:scale-110 duration-300 focus:bg-[#000] w-full h-[30px] outline-none border-none bg-[#111] my-2 rounded-md p-2" type="number" id="taxes" placeholder="taxes">
+            <input onkeyup="getTotal()" class=" focus:scale-110 duration-300 focus:bg-[#000] w-full h-[30px] outline-none border-none bg-[#111] my-2 rounded-md p-2" type="number" id="ads" placeholder="ads">
+            <input onkeyup="getTotal()" class=" focus:scale-110 duration-300 focus:bg-[#000] w-full h-[30px] outline-none border-none bg-[#111] my-2 rounded-md p-2" type="number" id="discount" placeholder="discount">
+            <small class=" focus:scale-110 duration-300 focus:bg-[#000] before:content-['Total:'] items-center justify-center text-md w-20 h-[30px] outline-none border-none bg-[#a00d02] my-2 rounded-md p-2" id="total"></small>
+         </div>
+         <div class="gap-4 w-full sm:flex items-center justify-center">
+         <input class="focus:scale-110 duration-300  focus:bg-[#000] w-full h-[30px] outline-none border-none bg-[#111] my-2 rounded-md p-2 " placeholder="count" type="number" id="count">
+         <input class="focus:scale-110 duration-300  focus:bg-[#000] w-full h-[30px] outline-none border-none bg-[#111] my-2 rounded-md p-2 " placeholder="category" type="text" id="category">
+         
+        </div>
+         <button class="bg-violet-950 my-2 p-1.5 w-full rounded-lg duration-300 hover:tracking-wider hover:scale-110 hover:bg-violet-900" id="submit">create</button>
+    </div>
+  <!-- outputs section -->
+    <div class="outputs">
+        <input class="focus:scale-110 duration-300  focus:bg-[#000] w-full h-[30px] outline-none border-none bg-[#111] my-2 rounded-md p-2 " placeholder="search" type="text" id="search">
+        <div class="justify-between items-center gap-5 sm:flex">
+            <button id="serchTitle" class="bg-violet-950  my-2  p-1.5 w-full rounded-lg duration-300 hover:tracking-wider hover:scale-110 hover:bg-violet-900" id="submit">Search by Title</button>
+            <button id="searchCategory" class="bg-violet-950 my-2 p-1.5 w-full rounded-lg duration-300 hover:tracking-wider hover:scale-110 hover:bg-violet-900" id="submit">Search by Category</button>
+        
+        </div>
+        <table class="w-full text-center my-3">
+          <tr>
+               <th class="uppercase p-2">id</th>
+               <th class="uppercase p-2">title</th>
+               <th class="uppercase p-2">price</th>
+               <th class="uppercase p-2">taxes</th>
+               <th class="uppercase p-2">ads</th>
+               <th class="uppercase p-2">discount</th>
+               <th class="uppercase p-2">total</th>
+               <th class="uppercase p-2">category</th>
+               <th class="uppercase p-2">update</th>
+               <th class="uppercase p-2">delete</th>
+          </tr>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>samsung</td>
+              <td>2000</td>
+              <td>100</td>
+              <td>100</td>
+              <td>100</td>
+              <td>2100</td>
+              
+              <td>phone</td>
+              <td><button id="update">update</button></td>
+              <td><button id="delete">delete</button></td>
+
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>samsung</td>
+              <td>2000</td>
+              <td>100</td>
+              <td>100</td>
+              <td>100</td>
+              <td>2100</td>
+              
+              <td>phone</td>
+              <td><button id="update">update</button></td>
+              <td><button id="delete">delete</button></td>
+
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>samsung</td>
+              <td>2000</td>
+              <td>100</td>
+              <td>100</td>
+              <td>100</td>
+              <td>2100</td>
+              
+              <td>phone</td>
+              <td><button id="update">update</button></td>
+              <td><button id="delete">delete</button></td>
+
+            </tr>
+          </tbody>
+        </table>
+    </div>
+
+  </div>
+  <script src="main.js"></script>
 </body>
 </html>
