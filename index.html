@@ -37,10 +37,11 @@
     </div>
   <!-- outputs section -->
     <div class="outputs max-w-full ">
-        <input class="focus:scale-110 duration-300  focus:bg-[#000] w-full h-[30px] outline-none border-none bg-[#111] my-2 rounded-md p-2 " placeholder="search" type="text" id="search">
+        <input onkeyup="searchData(this.value)" class="focus:scale-110 duration-300  focus:bg-[#000] w-full h-[30px] outline-none border-none bg-[#111] my-2 rounded-md p-2 " placeholder="search" type="text" id="search">
         <div class="justify-between items-center gap-5 sm:flex">
-            <button id="serchTitle" class="bg-violet-950  my-2  p-1.5 w-full rounded-lg duration-300 hover:tracking-wider hover:scale-110 hover:bg-violet-900" id="submit">Search by Title</button>
-            <button id="searchCategory" class="bg-violet-950 my-2 p-1.5 w-full rounded-lg duration-300 hover:tracking-wider hover:scale-110 hover:bg-violet-900" id="submit">Search by Category</button>
+          
+            <button onclick="getSearchMood(this.id)" id="searchTitle" class="bg-violet-950  my-2  p-1.5 w-full rounded-lg duration-300 hover:tracking-wider hover:scale-110 hover:bg-violet-900" id="submit">Search by Title</button>
+            <button onclick="getSearchMood(this.id)" id="searchCategory" class="bg-violet-950 my-2 p-1.5 w-full rounded-lg duration-300 hover:tracking-wider hover:scale-110 hover:bg-violet-900" id="submit">Search by Category</button>
         
         </div>
         <div id="divDeleteAll">
@@ -69,6 +70,28 @@
     </div>
 
   </div>
+  <script>
+    let searchMood = 'title';
+    function getSearchMood(id)
+      {
+        let search = document.getElementById("search");
+        if(id=='searchTitle')
+          {
+            searchMood = 'title';
+            search.placeholder = 'Search By Title'
+          }
+          else
+          {
+            searchMood = 'category';
+            search.placeholder = 'Search By Category'
+          }
+          search.focus();
+          search.value ='';
+          showData();
+          
+          
+      }
+  </script>
   <script src="main.js"></script>
 </body>
 </html>

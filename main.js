@@ -39,14 +39,14 @@ else{
 }
 submit.onclick = function(){
  let newPro ={
-    title:title.value,
+    title:title.value.toLowerCase(),
     price:price.value,
     taxes:taxes.value,
     ads:ads.value,
     discount:discount.value,
     total:total.innerHTML,
     count:count.value,
-    category:category.value,
+    category:category.value.toLowerCase(),
  }   
  if(mood==='create')
  {
@@ -173,5 +173,61 @@ function updateData(i)
   )
  
 }
+//search
+function searchData(value)
+{
+ 
+  let table ='';
+  if(searchMood=='title')
+  {
+    for(let i =0 ; i <dataPro.length; i++)
+    {
+      if(dataPro[i].title.includes(value.toLowerCase()))
+      { table  += 
+        `
+        <tr>
+        <td>${i}</td>
+        <td>${dataPro[i].title}</td>
+        <td>${dataPro[i].price}</td>
+        <td>${dataPro[i].taxes}</td>
+        <td>${dataPro[i].ads}</td>
+        <td>${dataPro[i].discount}</td>
+        <td>${dataPro[i].total}</td>
+        <td>${dataPro[i].category}</td>
+        
+        <td>phone</td>
+        <td ><button onclick='updateData(${i})' class='bg-violet-950  my-2  p-1.5 w-full rounded-lg duration-300  hover:scale-110 hover:bg-violet-900' id="update">update</button></td>
+        <td><button onclick='deleteData(${i})' class='bg-violet-950  my-2  p-1.5 w-full rounded-lg duration-300  hover:scale-110 hover:bg-violet-900' id="delete">delete</button></td>
+        </tr>`;
+      }
+    }
+  }
+  else{
+    for(let i =0 ; i <dataPro.length; i++)
+      {
+        if(dataPro[i].category.includes(value.toLowerCase()))
+        { table  += 
+          `
+          <tr>
+          <td>${i}</td>
+          <td>${dataPro[i].title}</td>
+          <td>${dataPro[i].price}</td>
+          <td>${dataPro[i].taxes}</td>
+          <td>${dataPro[i].ads}</td>
+          <td>${dataPro[i].discount}</td>
+          <td>${dataPro[i].total}</td>
+          <td>${dataPro[i].category}</td>
+          
+          <td>phone</td>
+          <td ><button onclick='updateData(${i})' class='bg-violet-950  my-2  p-1.5 w-full rounded-lg duration-300  hover:scale-110 hover:bg-violet-900' id="update">update</button></td>
+          <td><button onclick='deleteData(${i})' class='bg-violet-950  my-2  p-1.5 w-full rounded-lg duration-300  hover:scale-110 hover:bg-violet-900' id="delete">delete</button></td>
+          </tr>`;
+        }
+      }
+  }
+  document.getElementById('tbody').innerHTML = table;
+}
+
+
 //clean data
 
