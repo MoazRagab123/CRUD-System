@@ -31,7 +31,7 @@ if(localStorage.product!=null)
    dataPro = JSON.parse(localStorage.product);
 }
 else{
-    let dataPro = [];
+     dataPro = [];
 }
 submit.onclick = function(){
  let newPro ={
@@ -44,7 +44,18 @@ submit.onclick = function(){
     count:count.value,
     category:category.value,
  }   
- dataPro.push(newPro);
+//  add number of new pro object based on count 
+ if(newPro.count>1)
+ {
+   for(let i =0; i<newPro.count;i++)
+  {
+   dataPro.push(newPro);
+  }
+ }
+ else{
+  dataPro.push(newPro);
+ }
+
  //save localstorage
  localStorage.setItem('product',JSON.stringify(dataPro));
  clearData();
@@ -96,7 +107,7 @@ function showData()
   {
     divDeleteAll.innerHTML =
     `
-    <button onclick="deleteAll()" id="btnDeleteAll" class="bg-violet-950 my-2 p-1.5 w-full rounded-lg duration-300 hover:tracking-wider hover:scale-110 hover:bg-violet-900" >Delete All</button>
+    <button onclick="deleteAll()" id="btnDeleteAll" class="bg-violet-950 my-2 p-1.5 w-full rounded-lg duration-300 hover:tracking-wider hover:scale-110 hover:bg-violet-900" >Delete All (${dataPro.length}) </button>
     `
   }
   else
