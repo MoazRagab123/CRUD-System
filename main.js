@@ -48,6 +48,7 @@ submit.onclick = function(){
  //save localstorage
  localStorage.setItem('product',JSON.stringify(dataPro));
  clearData();
+ showData();
 }
 //clear inputs 
 function clearData()
@@ -64,8 +65,37 @@ function clearData()
   
 }
 //read
-//count
+function showData()
+{
+  let table = '';  
+  for(let i =0 ; i<dataPro.length ; i++)
+  {
+    table += 
+    `
+    <tr>
+        <td>${i}</td>
+        <td>${dataPro[i].title}</td>
+        <td>${dataPro[i].price}</td>
+        <td>${dataPro[i].taxes}</td>
+        <td>${dataPro[i].ads}</td>
+        <td>${dataPro[i].discount}</td>
+        <td>${dataPro[i].total}</td>
+        <td>${dataPro[i].category}</td>
+        
+        <td>phone</td>
+        <td ><button class='bg-violet-950  my-2  p-1.5 w-full rounded-lg duration-300  hover:scale-110 hover:bg-violet-900' id="update">update</button></td>
+        <td><button class='bg-violet-950  my-2  p-1.5 w-full rounded-lg duration-300  hover:scale-110 hover:bg-violet-900' id="delete">delete</button></td>
+    </tr>
+  `
+  }
+  document.getElementById("tbody").innerHTML=table;
+
+}
+showData();
 //delete
+
+//count
+
 //update
 //clean data
 
