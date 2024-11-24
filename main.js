@@ -67,6 +67,7 @@ function clearData()
 //read
 function showData()
 {
+  
   let table = '';  
   for(let i =0 ; i<dataPro.length ; i++)
   {
@@ -84,16 +85,44 @@ function showData()
         
         <td>phone</td>
         <td ><button class='bg-violet-950  my-2  p-1.5 w-full rounded-lg duration-300  hover:scale-110 hover:bg-violet-900' id="update">update</button></td>
-        <td><button class='bg-violet-950  my-2  p-1.5 w-full rounded-lg duration-300  hover:scale-110 hover:bg-violet-900' id="delete">delete</button></td>
+        <td><button onclick='deleteData(${i})' class='bg-violet-950  my-2  p-1.5 w-full rounded-lg duration-300  hover:scale-110 hover:bg-violet-900' id="delete">delete</button></td>
     </tr>
   `
   }
   document.getElementById("tbody").innerHTML=table;
+  let divDeleteAll = document.getElementById("divDeleteAll");  
 
+  if(dataPro.length >0)
+  {
+    divDeleteAll.innerHTML =
+    `
+    <button onclick="deleteAll()" id="btnDeleteAll" class="bg-violet-950 my-2 p-1.5 w-full rounded-lg duration-300 hover:tracking-wider hover:scale-110 hover:bg-violet-900" >Delete All</button>
+    `
+  }
+  else
+  {
+    divDeleteAll.innerHTML = null;
+  }
 }
 showData();
 //delete
+function deleteData(i)
+{
+  
+   dataPro.splice(i,1);
+   localStorage.product = JSON.stringify(dataPro);
+  showData();
+  
+}
 
+//delete all
+function deleteAll()
+{
+  localStorage.clear();
+  dataPro.splice(0);
+  
+  showData();
+}
 //count
 
 //update
