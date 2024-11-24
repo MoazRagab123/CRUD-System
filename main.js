@@ -7,6 +7,10 @@ const total = document.getElementById('total');
 const count = document.getElementById('count');
 const category = document.getElementById('category');
 const submit = document.getElementById('submit');
+
+let mood = 'create';
+let tmp;
+
 console.log(title,price,taxes,ads,discount,total,count,category,submit)
 //get total
 function getTotal()
@@ -44,22 +48,33 @@ submit.onclick = function(){
     count:count.value,
     category:category.value,
  }   
-//  add number of new pro object based on count 
- if(newPro.count>1)
+ if(mood==='create')
  {
-   for(let i =0; i<newPro.count;i++)
-  {
-   dataPro.push(newPro);
-  }
+  //  add number of new pro object based on count 
+  if(newPro.count>1)
+    {
+      for(let i =0; i<newPro.count;i++)
+        {
+         dataPro.push(newPro);
+        }
+    }
+    else{
+        dataPro.push(newPro);
+    }
  }
  else{
-  dataPro.push(newPro);
+    dataPro[tmp] = newPro;
+    mood='create';
+    submit.innerHTML='create';
+    count.style.display = 'block';
  }
+
 
  //save localstorage
  localStorage.setItem('product',JSON.stringify(dataPro));
  clearData();
  showData();
+ 
 }
 //clear inputs 
 function clearData()
@@ -78,7 +93,7 @@ function clearData()
 //read
 function showData()
 {
-  
+  getTotal();
   let table = '';  
   for(let i =0 ; i<dataPro.length ; i++)
   {
@@ -95,7 +110,7 @@ function showData()
         <td>${dataPro[i].category}</td>
         
         <td>phone</td>
-        <td ><button class='bg-violet-950  my-2  p-1.5 w-full rounded-lg duration-300  hover:scale-110 hover:bg-violet-900' id="update">update</button></td>
+        <td ><button onclick='updateData(${i})' class='bg-violet-950  my-2  p-1.5 w-full rounded-lg duration-300  hover:scale-110 hover:bg-violet-900' id="update">update</button></td>
         <td><button onclick='deleteData(${i})' class='bg-violet-950  my-2  p-1.5 w-full rounded-lg duration-300  hover:scale-110 hover:bg-violet-900' id="delete">delete</button></td>
     </tr>
   `
@@ -134,8 +149,29 @@ function deleteAll()
   
   showData();
 }
-//count
+
 
 //update
+function updateData(i)
+{
+  title.value = dataPro[i].title;
+  price.value = dataPro[i].price;
+  taxes.value = dataPro[i].taxes;
+  ads.value = dataPro[i].ads;
+  discount.value = dataPro[i].discount;
+  category.value = dataPro[i].category;
+  getTotal();
+  count.style.display = "none";
+  submit.innerHTML = "Update";
+  mood = 'update';
+  tmp=i;
+  scroll(
+    {
+      top:0,
+      behavior:'smooth',
+    }
+  )
+ 
+}
 //clean data
 
