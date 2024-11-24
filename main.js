@@ -47,21 +47,30 @@ submit.onclick = function(){
     total:total.innerHTML,
     count:count.value,
     category:category.value.toLowerCase(),
- }   
- if(mood==='create')
- {
-  //  add number of new pro object based on count 
-  if(newPro.count>1)
+ }
+ //verify important data before create new product
+ if(title.value!='' 
+  && price.value != '' 
+  && category.value!=''
+  && newPro.count <100)
+  {
+    if(mood==='create')
     {
-      for(let i =0; i<newPro.count;i++)
+     //  add number of new pro object based on count 
+      if(newPro.count>1)
         {
-         dataPro.push(newPro);
+          for(let i =0; i<newPro.count;i++)
+            {
+             dataPro.push(newPro);
+            }
+        }
+        else{
+            dataPro.push(newPro);
         }
     }
-    else{
-        dataPro.push(newPro);
-    }
- }
+    clearData();
+  }   
+ 
  else{
     dataPro[tmp] = newPro;
     mood='create';
@@ -72,7 +81,7 @@ submit.onclick = function(){
 
  //save localstorage
  localStorage.setItem('product',JSON.stringify(dataPro));
- clearData();
+ 
  showData();
  
 }
@@ -100,7 +109,7 @@ function showData()
     table += 
     `
     <tr>
-        <td>${i}</td>
+        <td>${i+1}</td>
         <td>${dataPro[i].title}</td>
         <td>${dataPro[i].price}</td>
         <td>${dataPro[i].taxes}</td>
@@ -205,7 +214,7 @@ function searchData(value)
   else{
     for(let i =0 ; i <dataPro.length; i++)
       {
-        if(dataPro[i].category.includes(value.toLowerCase()))
+        if(dataPro[i].category.includes(value))
         { table  += 
           `
           <tr>
@@ -230,4 +239,5 @@ function searchData(value)
 
 
 //clean data
+
 
